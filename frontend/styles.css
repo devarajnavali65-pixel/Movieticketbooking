@@ -53,6 +53,7 @@ body {
     letter-spacing: -1px;
     background: linear-gradient(to right, #ff4d4d, #ff8080);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -133,6 +134,19 @@ h1 span {
 .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-3px);
+}
+
+.btn-signup {
+    background: linear-gradient(to right, #3b82f6, #2563eb);
+    color: white;
+    border: none;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+}
+
+.btn-signup:hover {
+    background: linear-gradient(to right, #2563eb, #1d4ed8);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
 }
 
 /* Modal Styling */
