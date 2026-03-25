@@ -2,4 +2,5 @@ fastapi
 uvicorn
 psycopg2
 pydantic
-passlib[bcrypt]
+passlib==1.7.4
+bcrypt==4.0.1

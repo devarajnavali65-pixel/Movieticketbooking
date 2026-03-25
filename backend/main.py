@@ -3,7 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import os
 import psycopg2
-from passlib.context import CryptContext
+import bcrypt
+import hashlib
 
 app = FastAPI(title="Movie Ticket Booking API")
 
@@ -16,7 +17,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# Helper functions to handle password hashing with direct use of bcrypt
+# and pre-hashing with SHA256 to avoid the 72-byte limit.
+def hash_password(password: str) -> str:
+    pwd_bytes = password.encode('utf-8')
+    sha256_hash = hashlib.sha256(pwd_bytes).digest()
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(sha256_hash, salt).decode('utf-8')
+
+def verify_password(password: str, hashed_password: str) -> bool:
+    pwd_bytes = password.encode('utf-8')
+    sha256_hash = hashlib.sha256(pwd_bytes).digest()
+    try:
+        return bcrypt.checkpw(sha256_hash, hashed_password.encode('utf-8'))
+    except Exception:
+        return False
 
 class UserRegister(BaseModel):
     username: str
@@ -61,9 +76,7 @@ async def register(user: UserRegister):
         if cur.fetchone():
             raise HTTPException(status_code=400, detail="User already exists")
         
-        # Bcrypt has a 72-byte limit. We truncate to ensure stability.
-        safe_password = user.password[:72]
-        hashed_password = pwd_context.hash(safe_password)
+        hashed_password = hash_password(user.password)
         cur.execute(
             "INSERT INTO users (username, email, phone_number, password_hash) VALUES (%s, %s, %s, %s)",
             (user.username, user.email, user.phone_number, hashed_password)
@@ -88,9 +101,7 @@ async def login(user: UserLogin):
         if not db_user:
             raise HTTPException(status_code=401, detail="Invalid credentials")
         
-        # Bcrypt has a 72-byte limit. We truncate before verifying.
-        safe_password = user.password[:72]
-        if not pwd_context.verify(safe_password, db_user[2]):
+        if not verify_password(user.password, db_user[2]):
             raise HTTPException(status_code=401, detail="Invalid credentials")
         
         return {"message": "Login successful", "user": {"id": db_user[0], "username": db_user[1]}}
