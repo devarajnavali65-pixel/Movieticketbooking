@@ -12,15 +12,88 @@
 <body>
     <nav class="navbar">
         <div class="logo">CINEPASS</div>
+        <div class="nav-links">
+            <a href="#" class="btn btn-secondary" onclick="openModal('signin')">Sign In</a>
+            <a href="#" class="btn btn-signup" onclick="openModal('signup')">Join Now</a>
+        </div>
     </nav>
 
-    <main class="hero">
-        <h1>Experience <span>Cinema</span> Like Never Before.</h1>
-        <p>Book your favorite movies in the best theaters across the city. Modern, fast, and simple.</p>
-        <div class="btn-group">
-            <a href="#" class="btn btn-signup" onclick="openModal('signup')">Get Started</a>
-            <a href="#" class="btn btn-secondary" onclick="openModal('signin')">Sign In</a>
-        </div>
+    <!-- Main Movie Home Page Content -->
+    <main class="home-container">
+        <!-- Hero Movie Banner -->
+        <section class="main-banner">
+            <div class="banner-content">
+                <span class="badge">FEATURED</span>
+                <h1>Avatar: The Way of Water</h1>
+                <p>Return to the world of Pandora in this breathtaking visual spectacle from James Cameron. Experience the next chapter of the Sully family's journey.</p>
+                <div class="banner-btns">
+                    <button class="btn btn-primary" onclick="openModal('signin')">Watch Trailer</button>
+                    <button class="btn btn-secondary" onclick="openModal('signup')">Book Now</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Movie Grid Section -->
+        <section class="movie-grid-section">
+            <div class="section-header">
+                <h2>Now Showing</h2>
+                <a href="#" class="view-all" onclick="openModal('signup')">View All</a>
+            </div>
+            <div class="movie-grid">
+                <!-- Movie Card 1 -->
+                <div class="movie-card" onclick="openModal('signup')">
+                    <div class="movie-poster">
+                        <img src="https://image.tmdb.org/t/p/w500/8R9Ln79r9IptXqf869n8G5TsuS.jpg" alt="Ant-Man">
+                        <div class="poster-overlay">
+                            <span class="rating">⭐ 8.4</span>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3>Ant-Man</h3>
+                        <p>Sci-Fi / Action</p>
+                    </div>
+                </div>
+                <!-- Movie Card 2 -->
+                <div class="movie-card" onclick="openModal('signup')">
+                    <div class="movie-poster">
+                        <img src="https://image.tmdb.org/t/p/w500/dm06IL9TeiRqyUhkijmHbZcyisY.jpg" alt="The Whale">
+                        <div class="poster-overlay">
+                            <span class="rating">⭐ 8.1</span>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3>The Whale</h3>
+                        <p>Drama</p>
+                    </div>
+                </div>
+                <!-- Movie Card 3 -->
+                <div class="movie-card" onclick="openModal('signup')">
+                    <div class="movie-poster">
+                        <img src="https://image.tmdb.org/t/p/w500/26S3KLRJv77STqcZSTrs987tY7o.jpg" alt="Puss in Boots">
+                        <div class="poster-overlay">
+                            <span class="rating">⭐ 8.0</span>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3>Puss in Boots</h3>
+                        <p>Animation / Adventure</p>
+                    </div>
+                </div>
+                <!-- Movie Card 4 -->
+                <div class="movie-card" onclick="openModal('signup')">
+                    <div class="movie-poster">
+                        <img src="https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg" alt="Avatar">
+                        <div class="poster-overlay">
+                            <span class="rating">⭐ 7.8</span>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3>Avatar: Water</h3>
+                        <p>Action / Sci-Fi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Sign Up Modal -->
