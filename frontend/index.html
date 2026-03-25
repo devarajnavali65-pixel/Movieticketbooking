@@ -72,6 +72,13 @@
     <script>
         const API_URL = "https://movie-ticket-booking-backend-n0gk.onrender.com";
 
+        // Auto-redirect if already logged in
+        window.onload = () => {
+            if (localStorage.getItem('user')) {
+                window.location.href = 'home.html';
+            }
+        };
+
         function openModal(type) {
             document.getElementById(type + 'Modal').style.display = 'flex';
         }
@@ -129,11 +136,8 @@
                 const result = await response.json();
                 if (response.ok) {
                     alert(`Welcome back, ${result.user.username}!`);
-                    closeModal('signin');
-                    // Store user info in localStorage for now
                     localStorage.setItem('user', JSON.stringify(result.user));
-                    // Redirect to dashboard or update UI
-                    window.location.reload(); 
+                    window.location.href = 'home.html'; 
                 } else {
                     alert(`Error: ${result.detail || 'Login failed'}`);
                 }

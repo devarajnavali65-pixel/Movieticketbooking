@@ -61,7 +61,9 @@ async def register(user: UserRegister):
         if cur.fetchone():
             raise HTTPException(status_code=400, detail="User already exists")
         
-        hashed_password = pwd_context.hash(user.password)
+        # Bcrypt has a 72-byte limit. We truncate to ensure stability.
+        safe_password = user.password[:72]
+        hashed_password = pwd_context.hash(safe_password)
         cur.execute(
             "INSERT INTO users (username, email, phone_number, password_hash) VALUES (%s, %s, %s, %s)",
             (user.username, user.email, user.phone_number, hashed_password)
@@ -82,7 +84,13 @@ async def login(user: UserLogin):
     try:
         cur.execute("SELECT id, username, password_hash FROM users WHERE email = %s", (user.email,))
         db_user = cur.fetchone()
-        if not db_user or not pwd_context.verify(user.password, db_user[2]):
+        
+        if not db_user:
+            raise HTTPException(status_code=401, detail="Invalid credentials")
+        
+        # Bcrypt has a 72-byte limit. We truncate before verifying.
+        safe_password = user.password[:72]
+        if not pwd_context.verify(safe_password, db_user[2]):
             raise HTTPException(status_code=401, detail="Invalid credentials")
         
         return {"message": "Login successful", "user": {"id": db_user[0], "username": db_user[1]}}

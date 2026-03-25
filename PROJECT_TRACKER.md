@@ -174,13 +174,13 @@ git push -u origin main
 - Service URL: [movie-ticket-booking-backend](https://movie-ticket-booking-backend-n0gk.onrender.com)
 - Status: Live & Connected
 
-### Step 12 — Interlinking Services (Status: Partially Complete) 🔌
-**Date**: March 24, 2026
+### Step 12 — Interlinking Services ✅
+**Date**: March 25, 2026
 **What was done**:
-- **Render + Neon**: Successfully linked! Added `DATABASE_URL` to Render environment variables.
-- **Backend Code**: Updated `backend/main.py` to use `DATABASE_URL` and added `/db-check` verification endpoint.
-- **GitHub**: Pushed changes to `main` branch to trigger automatic redeploy on Render.
-- **Vercel + Render**: Pending. Attempted to add `NEXT_PUBLIC_API_URL` to Vercel, but blocked by a manual login/verification requirement for GitHub on Vercel's end.
+- **Render + Neon**: Successfully linked via `DATABASE_URL`.
+- **Vercel + Render**: Successfully linked! Added `NEXT_PUBLIC_API_URL` to Vercel (now uses `https://movie-ticket-booking-backend-n0gk.onrender.com`).
+- **Styles**: Updated Sign Up buttons to a premium blue gradient as requested.
+- **Verification**: Confirmed live site functionality and connectivity.
 
-**Next**: Complete Vercel environment configuration once manual login is resolved.
+**Final Status**: All services (GitHub, Render, Vercel, Neon) are fully connected and auto-deploying! 🚀
 

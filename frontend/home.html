@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | CinePass</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .home-container {
+            padding: 2rem 5%;
+            margin-top: 80px;
+        }
+        .main-banner {
+            width: 100%;
+            height: 450px;
+            border-radius: 24px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('movie_hero_background_1774341535035.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+        .banner-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .banner-content p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+        .movie-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+        .movie-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+        .movie-poster {
+            width: 100%;
+            height: 320px;
+            background: #1a1a1c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+        .movie-info {
+            padding: 1.2rem;
+        }
+        .movie-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .movie-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+        .tag {
+            background: rgba(255, 77, 77, 0.1);
+            color: var(--primary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" style="background: rgba(10, 10, 12, 0.8); backdrop-filter: blur(10px); position: fixed; top: 0;">
+        <div class="logo">CINEPASS</div>
+        <div style="display: flex; align-items: center; gap: 2rem;">
+            <div id="userInfo" style="font-weight: 600;"></div>
+            <a href="#" class="btn btn-secondary" onclick="logout()" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">Logout</a>
+        </div>
+    </nav>
+
+    <div class="home-container">
+        <div class="main-banner">
+            <div class="banner-content">
+                <span class="tag" style="font-size: 1rem; padding: 4px 12px; margin-bottom: 1rem; display: inline-block;">FEATURED</span>
+                <h2>Avatar: The Way of Water</h2>
+                <p>Return to the world of Pandora in this breathtaking visual spectacle from James Cameron.</p>
+                <a href="#" class="btn btn-primary" style="padding: 0.8rem 2rem;">Watch Trailer</a>
+            </div>
+        </div>
+
+        <section>
+            <div class="section-title">
+                <span>Now Showing</span>
+                <a href="#" style="color: var(--primary); font-size: 1rem; text-decoration: none;">View All</a>
+            </div>
+            <div class="movie-grid">
+                <!-- Movie Cards -->
+                <div class="movie-card">
+                    <div class="movie-poster">John Wick 4 Poster</div>
+                    <div class="movie-info">
+                        <h3>John Wick: Chapter 4</h3>
+                        <div class="movie-meta">
+                            <span>Action / Thriller</span>
+                            <span style="color: #ffc107;">★ 4.8</span>
+                        </div>
+                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                    </div>
+                </div>
+                <!-- Add 3 more for demo -->
+                <div class="movie-card">
+                    <div class="movie-poster">Interstellar Poster</div>
+                    <div class="movie-info">
+                        <h3>Interstellar</h3>
+                        <div class="movie-meta">
+                            <span>Sci-Fi / Drama</span>
+                            <span style="color: #ffc107;">★ 4.9</span>
+                        </div>
+                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <div class="movie-poster">Oppenheimer Poster</div>
+                    <div class="movie-info">
+                        <h3>Oppenheimer</h3>
+                        <div class="movie-meta">
+                            <span>Biography / History</span>
+                            <span style="color: #ffc107;">★ 4.7</span>
+                        </div>
+                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <div class="movie-poster">The Dark Knight Poster</div>
+                    <div class="movie-info">
+                        <h3>The Dark Knight</h3>
+                        <div class="movie-meta">
+                            <span>Action / Crime</span>
+                            <span style="color: #ffc107;">★ 4.9</span>
+                        </div>
+                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) {
+            window.location.href = 'index.html';
+        } else {
+            document.getElementById('userInfo').innerText = `Hey, ${user.username}! ✨`;
+        }
+
+        function logout() {
+            localStorage.removeItem('user');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
