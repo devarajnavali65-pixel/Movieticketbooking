@@ -1,0 +1,7 @@
+﻿[OK] Repository created successfully!
+  Name: devarajnavali65-pixel/Movieticketbooking
+  URL: https://github.com/devarajnavali65-pixel/Movieticketbooking
+  Clone URL: https://github.com/devarajnavali65-pixel/Movieticketbooking.git
+  SSH URL: git@github.com:devarajnavali65-pixel/Movieticketbooking.git
+  Private: False
+  Default Branch: main

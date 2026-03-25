@@ -1,0 +1,17 @@
+﻿On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   .agents/skills/backend-fastapi.md
+	new file:   .agents/skills/database-neon.md
+	new file:   .agents/skills/frontend-nextjs.md
+	new file:   .gitignore
+	new file:   PROJECT_TRACKER.md
+	deleted:    README.md
+	new file:   backend/.gitkeep
+	new file:   db/.gitkeep
+	new file:   frontend/.gitkeep
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	git_status.txt
+

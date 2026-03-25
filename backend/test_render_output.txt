@@ -1,0 +1,17 @@
+﻿============================================================
+RENDER CONNECTION TEST
+============================================================
+
+[Step 1] Checking API key (listing owners)...
+[OK] API Key is VALID!
+  - Name: My Workspace
+    ID: tea-d6t3tan5gffc738tq7t0
+    Email: devarajnavali65@gmail.com
+    Type: team
+
+[Step 2] Listing services...
+[OK] No services found yet (ready to create one).
+
+============================================================
+Test complete!
+============================================================

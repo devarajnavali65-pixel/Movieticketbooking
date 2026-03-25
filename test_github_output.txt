@@ -1,0 +1,24 @@
+﻿============================================================
+GITHUB CONNECTION TEST
+============================================================
+
+[Step 1] Checking API key (user info)...
+[OK] API Key is VALID!
+  - Username: devarajnavali65-pixel
+    Name: None
+    Email: None
+    ID: 268548155
+    Public Repos: 1
+    Private Repos: N/A
+    Plan: N/A
+
+[Step 2] Listing repositories (up to 10)...
+[OK] Found repos:
+  - repository-example (public)
+
+[Step 3] Checking token scopes...
+[OK] Token scopes: repo
+
+============================================================
+Test complete!
+============================================================

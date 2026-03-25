@@ -1,0 +1,20 @@
+﻿============================================================
+VERCEL CONNECTION TEST
+============================================================
+
+[Step 1] Checking API key (user info)...
+[OK] API Key is VALID!
+  - Username: devarajnavali65-pixel
+    Name: None
+    Email: devarajnavali65@gmail.com
+    ID: aFZaoo5D6mm0Huis1C7raIG2
+
+[Step 2] Listing projects...
+[OK] No projects found yet (ready to create one).
+
+[Step 3] Listing teams...
+[FAIL] Error: <urlopen error [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond>
+
+============================================================
+Test complete!
+============================================================

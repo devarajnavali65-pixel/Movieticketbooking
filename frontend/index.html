@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinePass | Movie Ticket Booking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">CINEPASS</div>
+    </nav>
+
+    <main class="hero">
+        <h1>Experience <span>Cinema</span> Like Never Before.</h1>
+        <p>Book your favorite movies in the best theaters across the city. Modern, fast, and simple.</p>
+        <div class="btn-group">
+            <a href="#" class="btn btn-primary" onclick="openModal('signup')">Get Started</a>
+            <a href="#" class="btn btn-secondary" onclick="openModal('signin')">Sign In</a>
+        </div>
+    </main>
+
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('signup')">&times;</span>
+            <h2>Create Account</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Choose a username" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone_number" placeholder="+1 (555) 000-0000" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sign In Modal -->
+    <div id="signinModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('signin')">&times;</span>
+            <h2>Welcome Back</h2>
+            <form id="signinForm">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = "https://movie-ticket-booking-backend-n0gk.onrender.com";
+
+        function openModal(type) {
+            document.getElementById(type + 'Modal').style.display = 'flex';
+        }
+
+        function closeModal(type) {
+            document.getElementById(type + 'Modal').style.display = 'none';
+        }
+
+        // Close on escape
+        window.onkeydown = function(event) {
+            if (event.key === "Escape") {
+                document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none');
+            }
+        };
+
+        // Handle Sign Up
+        document.getElementById('signupForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            try {
+                const response = await fetch(`${API_URL}/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                if (response.ok) {
+                    alert('Registration successful! Please sign in.');
+                    closeModal('signup');
+                    openModal('signin');
+                } else {
+                    alert(`Error: ${result.detail || 'Registration failed'}`);
+                }
+            } catch (error) {
+                alert('Connection error. Please try again later.');
+            }
+        };
+
+        // Handle Sign In
+        document.getElementById('signinForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            try {
+                const response = await fetch(`${API_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                if (response.ok) {
+                    alert(`Welcome back, ${result.user.username}!`);
+                    closeModal('signin');
+                    // Store user info in localStorage for now
+                    localStorage.setItem('user', JSON.stringify(result.user));
+                    // Redirect to dashboard or update UI
+                    window.location.reload(); 
+                } else {
+                    alert(`Error: ${result.detail || 'Login failed'}`);
+                }
+            } catch (error) {
+                alert('Connection error. Please try again later.');
+            }
+        };
+    </script>
+</body>
+</html>
