@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | CinePass</title>
+    <title>Home | Movie Booking</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
@@ -49,6 +49,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 2rem;
+            margin-bottom: 3rem;
         }
         .movie-card {
             background: var(--card-bg);
@@ -60,6 +61,7 @@
         .movie-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
         }
         .movie-poster {
             width: 100%;
@@ -70,6 +72,16 @@
             align-items: center;
             font-size: 0.9rem;
             color: var(--text-dim);
+            overflow: hidden;
+        }
+        .movie-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .movie-card:hover .movie-poster img {
+            transform: scale(1.05);
         }
         .movie-info {
             padding: 1.2rem;
@@ -92,11 +104,75 @@
             border-radius: 4px;
             font-size: 0.8rem;
         }
+        .section-divider {
+            border: none;
+            border-top: 1px solid var(--glass-border);
+            margin: 1rem 0 2rem;
+        }
+        /* Theatre Cards */
+        .theatre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .theatre-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+        .theatre-card:hover {
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.06);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+        .theatre-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(99,102,241,0.15));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(59,130,246,0.1);
+        }
+        .theatre-details h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+        .theatre-details .theatre-location {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+        .theatre-amenities {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .amenity-tag {
+            background: rgba(59,130,246,0.08);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            border: 1px solid rgba(59,130,246,0.1);
+        }
     </style>
 </head>
 <body>
     <nav class="navbar" style="background: rgba(10, 10, 12, 0.8); backdrop-filter: blur(10px); position: fixed; top: 0;">
-        <div class="logo">CINEPASS</div>
+        <div class="logo">MOVIE BOOKING</div>
         <div style="display: flex; align-items: center; gap: 2rem;">
             <div id="userInfo" style="font-weight: 600;"></div>
             <a href="#" class="btn btn-secondary" onclick="logout()" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">Logout</a>
@@ -113,16 +189,16 @@
             </div>
         </div>
 
+        <!-- Now Showing -->
         <section>
             <div class="section-title">
-                <span>Now Showing</span>
-                <a href="#" style="color: var(--primary); font-size: 1rem; text-decoration: none;">View All</a>
+                <span>🎬 Now Showing</span>
             </div>
             <div class="movie-grid">
-                <!-- Movie Cards -->
+                <!-- Movie 1: John Wick -->
                 <div class="movie-card">
                     <div class="movie-poster">
-                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&q=80&w=800" alt="John Wick" style="width:100%; height:100%; object-fit:cover;">
+                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&q=80&w=800" alt="John Wick">
                     </div>
                     <div class="movie-info">
                         <h3>John Wick: Chapter 4</h3>
@@ -130,12 +206,13 @@
                             <span>Action / Thriller</span>
                             <span style="color: #ffc107;">★ 4.8</span>
                         </div>
-                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                        <a href="booking.html?title=John+Wick:+Chapter+4&genre=Action+/+Thriller&rating=4.8&poster=https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format%26fit=crop%26q=80%26w=800&price=250" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
                     </div>
                 </div>
+                <!-- Movie 2: Interstellar -->
                 <div class="movie-card">
                     <div class="movie-poster">
-                        <img src="img/poster_interstellar.png" alt="Interstellar" style="width:100%; height:100%; object-fit:cover;">
+                        <img src="img/poster_interstellar.png" alt="Interstellar">
                     </div>
                     <div class="movie-info">
                         <h3>Interstellar</h3>
@@ -143,12 +220,13 @@
                             <span>Sci-Fi / Drama</span>
                             <span style="color: #ffc107;">★ 4.9</span>
                         </div>
-                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                        <a href="booking.html?title=Interstellar&genre=Sci-Fi+/+Drama&rating=4.9&poster=img/poster_interstellar.png&price=200" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
                     </div>
                 </div>
+                <!-- Movie 3: Oppenheimer -->
                 <div class="movie-card">
                     <div class="movie-poster">
-                        <img src="img/poster_oppenheimer.png" alt="Oppenheimer" style="width:100%; height:100%; object-fit:cover;">
+                        <img src="img/poster_oppenheimer.png" alt="Oppenheimer">
                     </div>
                     <div class="movie-info">
                         <h3>Oppenheimer</h3>
@@ -156,12 +234,13 @@
                             <span>Biography / History</span>
                             <span style="color: #ffc107;">★ 4.7</span>
                         </div>
-                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                        <a href="booking.html?title=Oppenheimer&genre=Biography+/+History&rating=4.7&poster=img/poster_oppenheimer.png&price=220" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
                     </div>
                 </div>
+                <!-- Movie 4: The Dark Knight -->
                 <div class="movie-card">
                     <div class="movie-poster">
-                        <img src="https://images.unsplash.com/photo-1531259683007-016a7b628fc3?auto=format&fit=crop&q=80&w=800" alt="The Dark Knight" style="width:100%; height:100%; object-fit:cover;">
+                        <img src="https://images.unsplash.com/photo-1531259683007-016a7b628fc3?auto=format&fit=crop&q=80&w=800" alt="The Dark Knight">
                     </div>
                     <div class="movie-info">
                         <h3>The Dark Knight</h3>
@@ -169,7 +248,200 @@
                             <span>Action / Crime</span>
                             <span style="color: #ffc107;">★ 4.9</span>
                         </div>
-                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                        <a href="booking.html?title=The+Dark+Knight&genre=Action+/+Crime&rating=4.9&poster=https://images.unsplash.com/photo-1531259683007-016a7b628fc3?auto=format%26fit=crop%26q=80%26w=800&price=200" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                    </div>
+                </div>
+                <!-- Movie 5: Spider-Man -->
+                <div class="movie-card">
+                    <div class="movie-poster">
+                        <img src="img/poster_spiderman.png" alt="Spider-Man: Across the Spider-Verse">
+                    </div>
+                    <div class="movie-info">
+                        <h3>Spider-Man: Spider-Verse</h3>
+                        <div class="movie-meta">
+                            <span>Animation / Action</span>
+                            <span style="color: #ffc107;">★ 4.8</span>
+                        </div>
+                        <a href="booking.html?title=Spider-Man:+Across+the+Spider-Verse&genre=Animation+/+Action&rating=4.8&poster=img/poster_spiderman.png&price=280" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                    </div>
+                </div>
+                <!-- Movie 6: Dune Part Two -->
+                <div class="movie-card">
+                    <div class="movie-poster">
+                        <img src="img/poster_dune.png" alt="Dune: Part Two">
+                    </div>
+                    <div class="movie-info">
+                        <h3>Dune: Part Two</h3>
+                        <div class="movie-meta">
+                            <span>Sci-Fi / Adventure</span>
+                            <span style="color: #ffc107;">★ 4.7</span>
+                        </div>
+                        <a href="booking.html?title=Dune:+Part+Two&genre=Sci-Fi+/+Adventure&rating=4.7&poster=img/poster_dune.png&price=300" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                    </div>
+                </div>
+                <!-- Movie 7: Guardians of the Galaxy -->
+                <div class="movie-card">
+                    <div class="movie-poster">
+                        <img src="img/poster_guardians.png" alt="Guardians of the Galaxy Vol. 3">
+                    </div>
+                    <div class="movie-info">
+                        <h3>Guardians of the Galaxy 3</h3>
+                        <div class="movie-meta">
+                            <span>Action / Comedy</span>
+                            <span style="color: #ffc107;">★ 4.6</span>
+                        </div>
+                        <a href="booking.html?title=Guardians+of+the+Galaxy+Vol.+3&genre=Action+/+Comedy&rating=4.6&poster=img/poster_guardians.png&price=250" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                    </div>
+                </div>
+                <!-- Movie 8: Barbie -->
+                <div class="movie-card">
+                    <div class="movie-poster">
+                        <img src="img/poster_barbie.png" alt="Barbie">
+                    </div>
+                    <div class="movie-info">
+                        <h3>Barbie</h3>
+                        <div class="movie-meta">
+                            <span>Comedy / Fantasy</span>
+                            <span style="color: #ffc107;">★ 4.5</span>
+                        </div>
+                        <a href="booking.html?title=Barbie&genre=Comedy+/+Fantasy&rating=4.5&poster=img/poster_barbie.png&price=220" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                    </div>
+                </div>
+                <!-- Movie 9: Fast X -->
+                <div class="movie-card">
+                    <div class="movie-poster">
+                        <img src="img/poster_fastx.png" alt="Fast X">
+                    </div>
+                    <div class="movie-info">
+                        <h3>Fast X</h3>
+                        <div class="movie-meta">
+                            <span>Action / Thriller</span>
+                            <span style="color: #ffc107;">★ 4.3</span>
+                        </div>
+                        <a href="booking.html?title=Fast+X&genre=Action+/+Thriller&rating=4.3&poster=img/poster_fastx.png&price=250" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                    </div>
+                </div>
+                <!-- Movie 10: Mission Impossible -->
+                <div class="movie-card">
+                    <div class="movie-poster">
+                        <img src="img/poster_mission.png" alt="Mission: Impossible">
+                    </div>
+                    <div class="movie-info">
+                        <h3>Mission: Impossible 7</h3>
+                        <div class="movie-meta">
+                            <span>Action / Adventure</span>
+                            <span style="color: #ffc107;">★ 4.6</span>
+                        </div>
+                        <a href="booking.html?title=Mission:+Impossible+7&genre=Action+/+Adventure&rating=4.6&poster=img/poster_mission.png&price=280" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                    </div>
+                </div>
+                <!-- Movie 11: Toxic -->
+                <div class="movie-card">
+                    <div class="movie-poster">
+                        <img src="img/poster_toxic.png" alt="Toxic">
+                    </div>
+                    <div class="movie-info">
+                        <h3>Toxic</h3>
+                        <div class="movie-meta">
+                            <span>Action / Thriller</span>
+                            <span style="color: #ffc107;">★ 4.5</span>
+                        </div>
+                        <a href="booking.html?title=Toxic&genre=Action+/+Thriller&rating=4.5&poster=img/poster_toxic.png&price=300" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                    </div>
+                </div>
+                <!-- Movie 12: Ramayan -->
+                <div class="movie-card">
+                    <div class="movie-poster">
+                        <img src="img/poster_ramayan.png" alt="Ramayan">
+                    </div>
+                    <div class="movie-info">
+                        <h3>Ramayan</h3>
+                        <div class="movie-meta">
+                            <span>Mythology / Epic</span>
+                            <span style="color: #ffc107;">★ 4.9</span>
+                        </div>
+                        <a href="booking.html?title=Ramayan&genre=Mythology+/+Epic&rating=4.9&poster=img/poster_ramayan.png&price=350" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.6rem;">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Theatres Section -->
+        <section style="margin-top: 1rem;">
+            <div class="section-title">
+                <span>🏛️ Popular Theatres</span>
+            </div>
+            <div class="theatre-grid">
+                <div class="theatre-card">
+                    <div class="theatre-icon">🎬</div>
+                    <div class="theatre-details">
+                        <h3>PVR Cinemas</h3>
+                        <div class="theatre-location">📍 Phoenix Mall, MG Road</div>
+                        <div class="theatre-amenities">
+                            <span class="amenity-tag">IMAX</span>
+                            <span class="amenity-tag">Dolby Atmos</span>
+                            <span class="amenity-tag">4 Screens</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="theatre-card">
+                    <div class="theatre-icon">🎭</div>
+                    <div class="theatre-details">
+                        <h3>INOX Megaplex</h3>
+                        <div class="theatre-location">📍 Mantri Square, Malleshwaram</div>
+                        <div class="theatre-amenities">
+                            <span class="amenity-tag">4K Laser</span>
+                            <span class="amenity-tag">Recliner</span>
+                            <span class="amenity-tag">6 Screens</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="theatre-card">
+                    <div class="theatre-icon">🎥</div>
+                    <div class="theatre-details">
+                        <h3>Cinepolis</h3>
+                        <div class="theatre-location">📍 Orion Mall, Rajajinagar</div>
+                        <div class="theatre-amenities">
+                            <span class="amenity-tag">3D</span>
+                            <span class="amenity-tag">VIP Lounge</span>
+                            <span class="amenity-tag">5 Screens</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="theatre-card">
+                    <div class="theatre-icon">🎞️</div>
+                    <div class="theatre-details">
+                        <h3>Raj Mandir Cinema</h3>
+                        <div class="theatre-location">📍 Central Avenue, Jayanagar</div>
+                        <div class="theatre-amenities">
+                            <span class="amenity-tag">Premium</span>
+                            <span class="amenity-tag">Dolby 7.1</span>
+                            <span class="amenity-tag">3 Screens</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="theatre-card">
+                    <div class="theatre-icon">🎦</div>
+                    <div class="theatre-details">
+                        <h3>Carnival Cinemas</h3>
+                        <div class="theatre-location">📍 City Centre, Koramangala</div>
+                        <div class="theatre-amenities">
+                            <span class="amenity-tag">IMAX</span>
+                            <span class="amenity-tag">4DX</span>
+                            <span class="amenity-tag">7 Screens</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="theatre-card">
+                    <div class="theatre-icon">🎪</div>
+                    <div class="theatre-details">
+                        <h3>Miraj Cinemas</h3>
+                        <div class="theatre-location">📍 Forum Mall, Whitefield</div>
+                        <div class="theatre-amenities">
+                            <span class="amenity-tag">Gold Class</span>
+                            <span class="amenity-tag">Atmos</span>
+                            <span class="amenity-tag">4 Screens</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -181,7 +453,7 @@
         if (!user) {
             window.location.href = 'index.html';
         } else {
-            document.getElementById('userInfo').innerText = `Hey, ${user.username}! ✨`;
+            document.getElementById('userInfo').innerText = 'Gudadesh,Devaraj,prashant,Vikas,santosh,veeresh';
         }
 
         function logout() {
